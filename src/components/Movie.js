@@ -1,12 +1,16 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { deleteMovie } from '../actions/movieActions'
+
 const Movie = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
     const movies = [];
-    const movie = movies.find(movie=>movie.id===Number(id));
+    const movie = props.movies.find(movie=>movie.id===Number(id));
+    // console.log(props.movies)
     
     return(<div className="modal-page col">
         <div className="modal-dialog">
@@ -47,4 +51,22 @@ const Movie = (props) => {
     </div>);
 }
 
-export default Movie;
+// Mapping functions for react-redux connect:
+
+// mapStateToProps to read state
+const mapStateToProps = (state) => {
+    // console.log(state)
+    return {
+        movies: state.movies,
+    }
+}
+
+
+// mapDispatchToProps to Update State
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteMovie: () => dispatch(deleteMovie()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);
