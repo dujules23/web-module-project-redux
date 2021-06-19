@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const MovieHeader = (props) => {
     const appTitle = "";
     const displayFavorites = true;
-    console.log(props.appTitle)
+    
     
     return(<div className="table-title">
         <div className="row">

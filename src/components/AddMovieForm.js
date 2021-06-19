@@ -23,6 +23,9 @@ const AddMovieForm = (props) => {
     }
 
     const handleSubmit = (e) => {
+        // console.log(movie)
+        props.addMovie(e.target.value)
+        push('/movies/')
     }
 
     const { title, director, genre, metascore, description } = movie;
@@ -67,4 +70,15 @@ const AddMovieForm = (props) => {
     </div>);
 }
 
-export default AddMovieForm;
+// Mapping functions for react-redux connect:
+
+// mapDispatchToProps to update state:
+const mapDispatchToProps = (dispatch) => {
+    console.log()
+    return {
+        addMovie: (movieName) => dispatch(addMovie(movieName))
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(AddMovieForm);
