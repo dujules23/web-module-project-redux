@@ -10,7 +10,8 @@ const Movie = (props) => {
 
     const movies = [];
     const movie = props.movies.find(movie=>movie.id===Number(id));
-    // console.log(props.movies)
+    console.log(Number(id))
+    
     
     return(<div className="modal-page col">
         <div className="modal-dialog">
@@ -42,7 +43,11 @@ const Movie = (props) => {
                         
                         <section>
                             <span className="m-2 btn btn-dark">Favorite</span>
-                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>
+                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={() => 
+                            { 
+                                props.deleteMovie(Number(id))
+                                push('/movies')
+                            }} /></span>
                         </section>
                     </div>
                 </div>
@@ -55,8 +60,9 @@ const Movie = (props) => {
 
 // mapStateToProps to read state
 const mapStateToProps = (state) => {
-    // console.log(state)
+    console.log(state.movies)
     return {
+        appTitle: state.appTitle,
         movies: state.movies,
     }
 }
@@ -65,7 +71,7 @@ const mapStateToProps = (state) => {
 // mapDispatchToProps to Update State
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteMovie: () => dispatch(deleteMovie()),
+        deleteMovie: (id) => dispatch(deleteMovie(id))
     }
 }
 
