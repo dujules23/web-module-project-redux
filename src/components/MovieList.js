@@ -39,7 +39,7 @@ const MovieList = (props)=> {
 // mapStateToProps to read state
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies,
+        movies: state.movieList.movies,
     }
 }
 
