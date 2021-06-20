@@ -24,9 +24,10 @@ const MovieHeader = (props) => {
 
 // Mapping functions for react-redux connect:
 const mapStateToProps = (state) => {
-    console.log(state.appTitle)
+    // console.log(state.favoritesList.displayFavorites)
     return {
-        appTitle: state.movieList.appTitle
+        appTitle: state.movieList.appTitle,
+        displayFavorites: state.favoritesList.displayFavorites
     }
 }
 

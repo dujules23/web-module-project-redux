@@ -60,9 +60,10 @@ const Movie = (props) => {
 
 // mapStateToProps to read state
 const mapStateToProps = (state) => {
-    console.log(state.movies)
+    console.log(state.favoritesList.displayFavorites)
     return {
         movies: state.movieList.movies,
+        displayFavorites: state.favoritesList.displayFavorites
     }
 }
 
