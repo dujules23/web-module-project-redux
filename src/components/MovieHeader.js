@@ -7,6 +7,7 @@ const MovieHeader = (props) => {
     const appTitle = "";
     const displayFavorites = true;
     
+    
     return(<div className="table-title">
         <div className="row">
         <div className="col-sm-6">
@@ -23,6 +24,7 @@ const MovieHeader = (props) => {
 
 // Mapping functions for react-redux connect:
 const mapStateToProps = (state) => {
+    console.log(state.appTitle)
     return {
         appTitle: state.appTitle
     }
