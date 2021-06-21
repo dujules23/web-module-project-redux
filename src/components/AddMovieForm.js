@@ -23,6 +23,10 @@ const AddMovieForm = (props) => {
     }
 
     const handleSubmit = (e) => {
+        // console.log(e)
+        // This takes the addMovie action and make it populate the "movie" form which is displayed in the movie list after submission
+        props.addMovie(movie)
+        push('/movies/')
     }
 
     const { title, director, genre, metascore, description } = movie;
@@ -67,4 +71,15 @@ const AddMovieForm = (props) => {
     </div>);
 }
 
-export default AddMovieForm;
+// Mapping functions for react-redux connect:
+
+// mapDispatchToProps to update state:
+const mapDispatchToProps = (dispatch) => {
+    console.log()
+    return {
+        addMovie: (movie) => dispatch(addMovie(movie))
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(AddMovieForm);
