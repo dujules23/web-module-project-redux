@@ -3,15 +3,25 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { deleteMovie } from '../actions/movieActions'
+import { addFavorites } from '../actions/favortiesActions'
 
 const Movie = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
-    const movies = [];
+    // const movies = [];
     const movie = props.movies.find(movie=>movie.id===Number(id));
     console.log(Number(id))
+
+    const handleDelete = () => {
+        props.deleteMovie(Number(id))
+        push('/movies')
+    }
     
+    const handleFavorites = () => { 
+        props.addFavorites(movie, props.displayFavorites)
+        console.log(props.displayFavorites)
+    }
     
     return(<div className="modal-page col">
         <div className="modal-dialog">
@@ -42,12 +52,8 @@ const Movie = (props) => {
                         </section>
                         
                         <section>
-                            <span className="m-2 btn btn-dark">Favorite</span>
-                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={() => 
-                            { 
-                                props.deleteMovie(Number(id))
-                                push('/movies')
-                            }} /></span>
+                            <span className="m-2 btn btn-dark" onClick={handleFavorites}>Favorite</span>
+                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={handleDelete} /></span>
                         </section>
                     </div>
                 </div>
@@ -71,7 +77,8 @@ const mapStateToProps = (state) => {
 // mapDispatchToProps to Update State
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteMovie: (id) => dispatch(deleteMovie(id))
+        deleteMovie: (id) => dispatch(deleteMovie(id)),
+        addFavorites: (movie) => dispatch(addFavorites(movie))
     }
 }
 
